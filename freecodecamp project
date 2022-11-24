@@ -1,0 +1,77 @@
+import sys
+operator=[]
+operand1=[]
+operand2=[]
+sum=[]
+
+if len(problem)>5:
+    print("Error: Too many problems.")
+    sys.exit()
+for i in range(0,len(problem)):
+    split=problem[i].split()
+    if not split[0].isdigit() or not split[2].isdigit():
+        print("Error: Numbers must only contain digits.")
+        sys.exit()
+    if len(split[0])>4 or len(split[2])>4:
+        print("Error: Numbers cannot be more than four digits.")
+        sys.exit()
+    if split[1]=="*" or split[1]=="/":
+        print("Error: Operator must be '+' or '-'.")
+        sys.exit()
+    operator.append(split[1])
+    operand1.append(split[0])
+    operand2.append(split[2])
+if answer is True:
+    for x in range(0, len(operand1)):
+        if operator[x] == "+":
+            sum.append(int(operand1[x]) + int(operand2[x]))
+        else:
+            sum.append(int(operand1[x]) - int(operand2[x]))
+
+
+if answer is False:
+    if len(operand1) == 2:
+        if 10000 > int(operand1[0]) > 999 and 99 < int(operand1[1]) < 1000:
+            print(" ", operand1[0], "    ", operand1[1])
+            if 0 < int(operand2[0]) < 10 and 9 < int(operand2[1]) < 100:
+                print(operator[0], "  ", operand2[0], "  ", operator[1], "", operand2[1])
+                print("------", "  ", "-----")
+        if 10 > int(operand1[0]) > 0 and 10 > int(operand1[1]) > 0:
+            print(" ", operand1[0], "       ", operand1[1])
+            if 10 > int(operand2[0]) > 0 and 999 < int(operand2[1]) < 10000:
+                print(operator[0], operand2[0], "  ", operator[1], operand2[1])
+                print("---    ------")
+    if len(operand1) == 4:
+        if 0 < int(operand1[0]) < 10 and 999 < int(operand1[1]) < 10000 and 9 < int(operand1[2]) < 100 and 99 < int(
+                operand1[3]) < 1000:
+            print("   ", operand1[0], "    ", operand1[1], "    ", operand1[2], "    ", operand1[3])
+            if 99 < int(operand2[0]) < 1000 and 0 < int(operand2[1]) < 10 and 10 < int(operand2[2]) < 100 and 10 < int(
+                    operand2[3]) < 100:
+                print(operator[0], operand2[0], "  ", operator[1], "  ", operand2[1], "  ", operator[2], operand2[2],
+                      "  ", operator[3], "", operand2[3])
+                print("-----    ------    ----    -----")
+    if len(operand1) == 5:
+        if 9 < int(operand1[0]) < 100 and 999 < int(operand1[1]) < 10000 and 0 < int(operand1[2]) < 10 and 99 < int(
+                operand1[3]) < 1000 and 0 < int(operand1[4]) < 10:
+            print(" ", operand1[0], "    ", operand1[1], "    ", operand1[2], "    ", operand1[3], "       ",
+                  operand1[4])
+            if 0 < int(operand2[0]) < 10 and 999 < int(operand2[1]) < 10000 and 0 < int(operand2[2]) < 10 and 9 < int(
+                    operand2[3]) < 100 and 999 < int(operand2[4]) < 10000:
+                print(operator[0], "", operand2[0], "  ", operator[1], operand2[1], "  ", operator[2], operand2[2],
+                      "  ", operator[3], "", operand2[3], "  ", operator[4], operand2[4])
+                print("----    ------    ---    -----    ------")
+if answer is True:
+    if len(operand1)==2:
+        if 0<int(operand1[0])<10 and 99<int(operand1[1])<1000:
+            print("   ",operand1[0],"    ",operand1[1])
+        if 99<int(operand2[0])<1000 and 9<int(operand2[1])<100:
+            print(operator[0],operand2[0],"  ",operator[1],"",operand2[1])
+            print("-----    -----")
+            print(" ",sum[0],"   ",sum[1])
+    if len(operand1)==5:
+        if 9<int(operand1[0])<100 and 0<int(operand1[1])<10 and 9<int(operand1[2])<100 and 99<int(operand1[3])<1000 and 99<int(operand1[4])<1000:
+            print("  ",operand1[0],"       ",operand1[1],"    ",operand1[2],"    ",operand1[3],"    ",operand1[4])
+        if 99<int(operand2[0])<1000 and 999<int(operand2[1])<10000 and 9<int(operand2[2])<100 and 9<int(operand2[3])<100 and 9<int(operand2[4])<100:
+            print(operator[0],operand2[0],"  ",operator[1],operand2[1],"  ",operator[2],operand2[2],"  ",operator[3],"",operand2[3],"  ",operator[4],"",operand2[4])
+            print("-----    ------    ----    -----    -----")
+            print("",sum[0],"   ",sum[1],"    ",sum[2],"    ",sum[3],"   ",sum[4])
