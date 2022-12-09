@@ -1,0 +1,60 @@
+
+def add_time(start,duration,name=None):
+    week = {"monday": 1, "tuesday": 2, "wednesday": 3, "thursday": 4, "friday": 5, "saturday": 6, "sunday": 7}
+    week_keys = list(week.keys())
+
+    hour1=int(start.split(":")[0])
+    hour2=int(duration.split(":")[0])
+    mins1=int(start.split(":")[1].split()[0])
+    mins2=int(duration.split(":")[1].split()[0])
+    am_pm=start.split()[1].lower()
+
+    #hours into minutes
+    if am_pm=="pm":
+        hour1+=12
+    total_minutes=(hour1*60)+mins1+(hour2*60)+mins2
+    total_hours_in_24_clock=int(total_minutes/60)
+    remaining_minutes=total_minutes-(total_hours_in_24_clock*60)
+    no_of_days=int(total_hours_in_24_clock/24)
+    if total_hours_in_24_clock%24<=11:
+        am_pm="am"
+        total_hours_in_12_clock = total_hours_in_24_clock %12
+        if total_hours_in_12_clock == 0:
+            total_hours_in_12_clock = 12
+
+    else:
+        am_pm="pm"
+        total_hours_in_12_clock = total_hours_in_24_clock - (24 * no_of_days)
+        if total_hours_in_12_clock == 0:
+            total_hours_in_12_clock = 12
+        if total_hours_in_12_clock > 12:
+            total_hours_in_12_clock -= 12
+
+    #Correct format of minutes:
+    if remaining_minutes<10:
+        remaining_minutes=str(0)+str(remaining_minutes)
+
+    while name is None:
+        if no_of_days==0:
+            return f"{total_hours_in_12_clock}:{remaining_minutes} {am_pm.upper()}"
+        if no_of_days==1:
+            return f"{total_hours_in_12_clock}:{remaining_minutes} {am_pm.upper()} (next day)"
+        else:
+            return f"{total_hours_in_12_clock}:{remaining_minutes} {am_pm.upper()} ({no_of_days} days later)"
+
+    while name is not None:
+
+        #calculating week day
+
+        name_index=week_keys.index(name.lower())
+        if name_index + (no_of_days%7)<7:
+            day_name = week_keys[name_index + (no_of_days%7)]
+        else:
+            day_name=week_keys[name_index+((no_of_days%7)-7)]
+
+        if no_of_days==0:
+            return f"{total_hours_in_12_clock}:{remaining_minutes} {am_pm.upper()}, {day_name.capitalize()}"
+        if no_of_days==1:
+            return f"{total_hours_in_12_clock}:{remaining_minutes} {am_pm.upper()}, {day_name.capitalize()} (next day)"
+        else:
+            return f"{total_hours_in_12_clock}:{remaining_minutes} {am_pm.upper()}, {day_name.capitalize()} ({no_of_days} days later)"
